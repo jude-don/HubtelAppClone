@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HubtelAppClone</string>
+    <string name="FirstSegmentedObject">History</string>
+    <string name="SecondSegmentedObject">Transaction Summary</string>
+    <string name="Search">Search</string>
+    <string name="Home">Home</string>
+    <string name="Send">Send</string>
+    <string name="History">History</string>
+    <string name="Scheduled">Scheduled</string>
+    <string name="Customer1Name"> Emmanuel Rockson</string>
+    <string name="Customer2Name">Kwabena Uncle Ebo</string>
+    <string name="Customer4Name">Kwame Ato</string>
+    <string name="CardSubtext">Cool your heart wai</string>
+    <string name="CardSubtextCategory1">Personal</string>
+    <string name="CardSubtextCategory2">Other</string>
+</resources>

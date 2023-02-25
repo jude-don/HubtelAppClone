@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Padding Dimensions-->
+    <dimen name="container_vertical_padding">6dp</dimen>
+    <dimen name="container_horizontal_padding">12dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="mainpage_padding_top">17dp</dimen>
+    <dimen name="searchbar_padding_bottom">31dp</dimen>
+    <dimen name="main_horizontal_padding">17dp</dimen>
+    <dimen name="float_end_padding">18dp</dimen>
+    <dimen name="mainpage_padding_bottom">12dp</dimen>
+
+
+
+    <!--Spacer Size -->
+    <dimen name="small_spacer"></dimen>
+    <dimen name="medium_spacer">4dp</dimen>
+    <dimen name="large_spacer">8dp</dimen>
+
+    <!--Corner Radius-->
+    <dimen name="small_radius">6dp</dimen>
+    <dimen name="medium_radius">10dp</dimen>
+    <dimen name="large_radius">13dp</dimen>
+
+
+    <!--Font Size-->
+    <dimen name="small_font">10sp</dimen>
+    <dimen name="medium_font">12sp</dimen>
+    <dimen name="large_font">14sp</dimen>
+
+    <!--Image / Icon Size-->
+
+
+    <dimen name="status_icon_size">11dp</dimen>
+    <dimen name="user_icon_size">25dp</dimen>
+    <dimen name="addbutton_size">32dp</dimen>
+    <dimen name="logo_size">39dp</dimen>
+
+
+    <!--Card Border-->
+    <dimen name="borderwidth">1dp</dimen>
+
+</resources>
