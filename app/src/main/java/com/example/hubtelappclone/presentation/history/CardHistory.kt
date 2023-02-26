@@ -28,9 +28,12 @@ fun CardHistory(){
     Card( 
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
-
-        ,
+            .wrapContentHeight(),
+        shape = RoundedCornerShape(
+            dimensionResource(
+                id = R.dimen.medium_radius
+            )
+        ),
         backgroundColor = mainBackgroundColor,
         border = BorderStroke(dimensionResource(id = R.dimen.borderwidth), secondaryColor)
     ) {
@@ -64,7 +67,7 @@ fun CardHistory(){
                 modifier = Modifier
                     .height(
                         dimensionResource(
-                            id = R.dimen.semilarge_spacer
+                            id = R.dimen.semiLarge_spacer
                         )
                     )
             )
@@ -76,7 +79,7 @@ fun CardHistory(){
                 modifier = Modifier
                     .height(
                         dimensionResource(
-                            id = R.dimen.semilarge_spacer
+                            id = R.dimen.semiLarge_spacer
                         )
                     )
             )
@@ -86,6 +89,7 @@ fun CardHistory(){
         }
         
     }
+    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.semiLarge_spacer)))
 }
 
 
@@ -156,7 +160,7 @@ fun MainCardInfo(){
                 modifier = Modifier
                     .wrapContentSize()
                     .clip(
-                        RoundedCornerShape(13.dp)
+                        RoundedCornerShape(dimensionResource(id = R.dimen.large_radius))
                     )
                     .background(
                         color = successColor
@@ -273,7 +277,7 @@ fun SubCardInfo(){
 }
 
 
-@Preview (showBackground = true)
+//@Preview (showBackground = true)
 @Composable
 fun PreviewFunction(){
     CardHistory()

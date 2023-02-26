@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Padding Dimensions-->
+    <dimen name="icon_padding_start">5dp</dimen>
     <dimen name="container_vertical_padding">6dp</dimen>
     <dimen name="container_horizontal_padding">12dp</dimen>
     <dimen name="card_padding">16dp</dimen>
@@ -8,6 +9,7 @@
     <dimen name="searchbar_padding_bottom">31dp</dimen>
     <dimen name="main_horizontal_padding">17dp</dimen>
     <dimen name="float_end_padding">18dp</dimen>
+    <dimen name="segmented_control_padding">18dp</dimen>
     <dimen name="mainpage_padding_bottom">12dp</dimen>
 
 
@@ -16,8 +18,10 @@
     <dimen name="small_spacer">4dp</dimen>
     <dimen name="medium_spacer">8dp</dimen>
     <dimen name="semi_spacer">11dp</dimen>
-    <dimen name="semilarge_spacer">16dp</dimen>
+    <dimen name="semiLarge_spacer">16dp</dimen>
     <dimen name="large_spacer">20dp</dimen>
+    <dimen name="extraLarge_spacer">20dp</dimen>
+    <dimen name="largest_spacer">32dp</dimen>
 
     <!--Corner Radius-->
     <dimen name="small_radius">6dp</dimen>
@@ -35,8 +39,13 @@
     <dimen name="point_size">4.2dp</dimen>
     <dimen name="status_icon_size">11dp</dimen>
     <dimen name="user_icon_size">25dp</dimen>
+    <dimen name="search_icon_size">25dp</dimen>
+    <dimen name="filter_icon_size">30dp</dimen>
     <dimen name="addbutton_size">32dp</dimen>
     <dimen name="logo_size">39dp</dimen>
+
+<!--Elevation-->
+    <dimen name="floating_action_elevation">2dp</dimen>
 
 
     <!--Card Border-->

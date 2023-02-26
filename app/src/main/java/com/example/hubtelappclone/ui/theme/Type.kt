@@ -15,6 +15,16 @@ val NunitoSansExtraBold = FontFamily(Font(R.font.nunitosans_extrabold))
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = NunitoSansRegular,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp
+    ),
+    h2 = TextStyle(
+        fontFamily = NunitoSansExtraBold,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
+    ),
     h3 = TextStyle(
         fontFamily = NunitoSansExtraBold,
         fontWeight = FontWeight.Bold,
@@ -37,7 +47,8 @@ val Typography = Typography(
         fontFamily = NunitoSansExtraBold,
         fontWeight = FontWeight.Bold,
         fontSize = 10.sp
-    )
+    ),
+
     /* Other default text styles to override
     button = TextStyle(
         fontFamily = FontFamily.Default,
