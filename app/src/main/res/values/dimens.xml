@@ -13,9 +13,11 @@
 
 
     <!--Spacer Size -->
-    <dimen name="small_spacer"></dimen>
-    <dimen name="medium_spacer">4dp</dimen>
-    <dimen name="large_spacer">8dp</dimen>
+    <dimen name="small_spacer">4dp</dimen>
+    <dimen name="medium_spacer">8dp</dimen>
+    <dimen name="semi_spacer">11dp</dimen>
+    <dimen name="semilarge_spacer">16dp</dimen>
+    <dimen name="large_spacer">20dp</dimen>
 
     <!--Corner Radius-->
     <dimen name="small_radius">6dp</dimen>
@@ -30,7 +32,7 @@
 
     <!--Image / Icon Size-->
 
-
+    <dimen name="point_size">4.2dp</dimen>
     <dimen name="status_icon_size">11dp</dimen>
     <dimen name="user_icon_size">25dp</dimen>
     <dimen name="addbutton_size">32dp</dimen>

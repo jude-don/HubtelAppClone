@@ -9,8 +9,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.hubtelappclone.ui.theme.activeTabColor
+import com.example.hubtelappclone.ui.theme.inactiveTabColor
 
 @Composable
 fun BottomNavBar(navController: NavController){
@@ -23,12 +28,27 @@ fun BottomNavBar(navController: NavController){
     var selectedIndex by rememberSaveable{
         mutableStateOf(0)
     }
-    BottomNavigation() {
+    BottomNavigation(
+        backgroundColor = Color.White,
+        elevation = 10.dp
+    ) {
         destinationList.forEachIndexed{
                 index, route ->  BottomNavigationItem(
-            label = { Text(text = route.title)},
-            icon = { Image(painter = painterResource(id = route.icon),
-                contentDescription = route.title)
+            label = {
+                Text(
+                    text = route.title,
+                    color = if (index == selectedIndex) activeTabColor
+                    else inactiveTabColor
+                )
+                    },
+
+            icon = {
+                Image(
+                painter = painterResource(id = route.icon),
+                contentDescription = route.title,
+                    colorFilter = if ( index == selectedIndex  ) ColorFilter.tint(activeTabColor)
+                    else ColorFilter.tint(inactiveTabColor)
+                )
             },
             selected =  index == selectedIndex,
             onClick = {
