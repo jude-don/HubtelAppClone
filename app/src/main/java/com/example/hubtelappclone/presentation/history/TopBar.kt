@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -53,16 +54,36 @@ fun SegementControl(sub_navController: NavHostController) {
                 elevation = 1.dp,
                 shape = RoundedCornerShape(dimensionResource(id = com.example.hubtelappclone.R.dimen.small_radius))
             )
-            .clip(RoundedCornerShape(dimensionResource(id = com.example.hubtelappclone.R.dimen.small_radius)))
+            .clip(
+                RoundedCornerShape(dimensionResource(id = com.example.hubtelappclone.R.dimen.small_radius))
+            )
+            .background(
+                secondaryColor
+            )
+            .padding(
+                dimensionResource(id = com.example.hubtelappclone.R.dimen.segmented_control_parent_padding)
+            )
         ,
 
 
         ) {
         Box(modifier = Modifier
             .weight(1f)
-            .requiredHeight(35.dp)
+            .clip(
+                if (index==0)
+                    RoundedCornerShape(dimensionResource(id = com.example.hubtelappclone.R.dimen.small_radius))
+                else RectangleShape
+            )
             .background(
                 color = if (index == 0) Color.White else secondaryColor
+            )
+            .clip(
+                RoundedCornerShape(dimensionResource(id = com.example.hubtelappclone.R.dimen.small_radius))
+            )
+            .padding(
+                dimensionResource(
+                    id = com.example.hubtelappclone.R.dimen.segmented_control_padding_small
+                )
             )
             .clickable {
                 index = 0
@@ -72,28 +93,49 @@ fun SegementControl(sub_navController: NavHostController) {
         ){
             Text(
                 text ="History",
-                color = if (index==0) primaryTextColor else accentTextColor,
+                color = if (index==0)
+                    primaryTextColor
+                else accentTextColor,
                 modifier = Modifier
                     .align(Alignment.Center),
-                style = if (index == 0) Typography.h2 else Typography.h1
+                style = if (index == 0)
+                    Typography.h2
+                else Typography.h1
             )
         }
         Box(modifier = Modifier
             .weight(1f)
-            .requiredHeight(35.dp)
+            .clip( if
+                    (index==1)
+                RoundedCornerShape(dimensionResource(id = com.example.hubtelappclone.R.dimen.small_radius))
+            else RectangleShape
+            )
             .background(
-                color = if (index == 1) Color.White else secondaryColor
+                color = if (index == 1)
+                    Color.White
+                else secondaryColor
+            )
+            .padding(
+                dimensionResource(
+                    id = com.example.hubtelappclone.R.dimen.segmented_control_padding_small
+                )
             )
             .clickable {
                 index = 1
-                sub_navController.navigate(TransactionSummary.route)
+                sub_navController.navigate(
+                    TransactionSummary.route
+                )
             }
         ){
             Text(
                 "Transaction Summary",
-                color= if(index==1) primaryTextColor else accentTextColor,
+                color= if (index==1)
+                    primaryTextColor
+                else accentTextColor,
                 modifier = Modifier.align(Alignment.Center),
-                style = if (index == 0) Typography.h1 else Typography.h2
+                style = if (index == 1)
+                    Typography.h2
+                else Typography.h1
             )
         }
     }
