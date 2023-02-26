@@ -17,6 +17,8 @@ import androidx.navigation.NavController
 import com.example.hubtelappclone.ui.theme.activeTabColor
 import com.example.hubtelappclone.ui.theme.inactiveTabColor
 
+
+// Bottom Navigation Bar Composable
 @Composable
 fun BottomNavBar(navController: NavController){
     val destinationList = listOf<Route>(

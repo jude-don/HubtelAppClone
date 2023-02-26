@@ -26,8 +26,12 @@ import com.example.hubtelappclone.ui.theme.accentTextColor
 import com.example.hubtelappclone.ui.theme.primaryTextColor
 import com.example.hubtelappclone.ui.theme.secondaryColor
 
+
+//Top App Bar Composable
 @Composable
 fun TopBar(sub_navController: NavHostController) {
+
+    //Main layout for Top App Bar
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -37,14 +41,17 @@ fun TopBar(sub_navController: NavHostController) {
             .background(Color.White)
             .padding(dimensionResource(id = com.example.hubtelappclone.R.dimen.segmented_control_padding))
     ) {
-SegementControl(sub_navController)
+        SegementControl(sub_navController)
     }
 }
 
 
+//Segmented Control Composable
 @Composable
 fun SegementControl(sub_navController: NavHostController) {
     var index by rememberSaveable{ mutableStateOf(0) }
+
+    //Main layout for segmented control
     Row(
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
@@ -62,11 +69,10 @@ fun SegementControl(sub_navController: NavHostController) {
             )
             .padding(
                 dimensionResource(id = com.example.hubtelappclone.R.dimen.segmented_control_parent_padding)
-            )
-        ,
-
-
+            ),
         ) {
+
+        //First Tab of Segmented Control
         Box(modifier = Modifier
             .weight(1f)
             .clip(
@@ -103,6 +109,8 @@ fun SegementControl(sub_navController: NavHostController) {
                 else Typography.h1
             )
         }
+
+        //Second Tab of Segmented Control
         Box(modifier = Modifier
             .weight(1f)
             .clip( if

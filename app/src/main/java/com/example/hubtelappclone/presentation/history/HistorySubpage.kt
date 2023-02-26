@@ -1,14 +1,14 @@
 package com.example.hubtelappclone.presentation.history
 
+import android.content.Context
 import android.widget.Toast
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
@@ -28,19 +28,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import com.example.hubtelappclone.R
+import com.example.hubtelappclone.historymodel.historyDataContainer
 import com.example.hubtelappclone.ui.theme.*
 
+
+// Main Composable
 @Composable
 fun HistorySubpage(){
     val textState = remember {
         mutableStateOf(TextFieldValue(""))
     }
     val context = LocalContext.current
+
+    //Main layout for the History Subpage
     Column(
         modifier = Modifier.
         fillMaxSize()
     ) {
-        UpperSection(state = textState)
+        UpperSection(state = textState,context)
         Spacer(
             modifier = Modifier
                 .height(dimensionResource(id = R.dimen.extraLarge_spacer))
@@ -48,17 +53,21 @@ fun HistorySubpage(){
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
-            Column(
-                modifier = Modifier.verticalScroll(rememberScrollState())
-            ) {
-                repeat(10){
-                    Date()
-                    CardHistory()
-                    CardHistory()
+
+            // Lazy List for the Card and Date Composable
+            LazyColumn{
+                items( historyDataContainer) {
+                    HistoryDataContainer -> Column {
+                    DateLazyList(historydata = HistoryDataContainer.Date)
+
+                    for (item in HistoryDataContainer.historyDataList){
+                        CardHistoryLazyColumn(history = item)
+                    }
                 }
-
-
+                }
             }
+
+            //Floating Action Button component
             ExtendedFloatingActionButton(
                 text = {
                     Text(
@@ -90,8 +99,9 @@ fun HistorySubpage(){
     }
 }
 
+//Upper Section Composable which hold Searchbar and filtericon
 @Composable
-fun UpperSection(state: MutableState<TextFieldValue>){
+fun UpperSection(state: MutableState<TextFieldValue>, context: Context){
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -104,19 +114,25 @@ fun UpperSection(state: MutableState<TextFieldValue>){
                 )
             )
         )
+
+        //Filter icon
         Image(
             painter = painterResource(id = R.drawable.filter_icon),
             contentDescription ="filter icon",
             modifier = Modifier
                 .size(dimensionResource(id = R.dimen.filter_icon_size))
                 .weight(0.1f)
+                .clickable {
+                    Toast
+                        .makeText(context, "Filter page under construction", Toast.LENGTH_SHORT)
+                        .show()
+                }
         )
-
-
-
     }
 }
 
+
+// SearchBar Composable
 @Composable
 fun SearchBar(state: MutableState<TextFieldValue>){
     val focusManager = LocalFocusManager.current
@@ -159,8 +175,11 @@ fun SearchBar(state: MutableState<TextFieldValue>){
 
 }
 
+
+
+// Date Composable
 @Composable
-fun Date(){
+fun DateLazyList(historydata: String){
     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.largest_spacer)))
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -182,12 +201,11 @@ fun Date(){
             ),
     ){
         Text(
-            text = "May 24,2022",
+            text = historydata ,
             style = Typography.caption.copy(color = accentTextColor),
         )
     }
     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.semiLarge_spacer)))
 }
-
 
 

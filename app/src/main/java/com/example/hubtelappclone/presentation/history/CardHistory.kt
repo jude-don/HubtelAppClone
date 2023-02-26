@@ -7,25 +7,23 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.hubtelappclone.R
+import com.example.hubtelappclone.historymodel.HistoryData
 import com.example.hubtelappclone.ui.theme.*
 
 @Composable
-fun CardHistory(){
-    Card( 
+fun CardHistoryLazyColumn(history: HistoryData){
+
+    //Card layout
+    Card(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
@@ -37,6 +35,8 @@ fun CardHistory(){
         backgroundColor = mainBackgroundColor,
         border = BorderStroke(dimensionResource(id = R.dimen.borderwidth), secondaryColor)
     ) {
+
+        //Main Layout within Card
         Column(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.SpaceEvenly,
@@ -46,9 +46,9 @@ fun CardHistory(){
                 .padding(dimensionResource(id = R.dimen.card_padding))
 
         ) {
-            Text( 
+            Text(
                 text = "14:45 PM",
-                style = Typography.subtitle1.copy( 
+                style = Typography.subtitle1.copy(
                     color = accentTextColor
                 )
             )
@@ -60,8 +60,7 @@ fun CardHistory(){
                         )
                     )
             )
-
-            MainCardInfo()
+            MainCardInfoLazyList(history)
 
             Spacer(
                 modifier = Modifier
@@ -84,20 +83,14 @@ fun CardHistory(){
                     )
             )
             SubCardInfo()
-
-            
         }
-        
     }
     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.semiLarge_spacer)))
 }
 
-
-
-
-
-@Composable 
-fun MainCardInfo(){
+// Card Information Composable containing Image, name, phonenumber, Status and Amount
+@Composable
+fun MainCardInfoLazyList(history:HistoryData) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -105,8 +98,8 @@ fun MainCardInfo(){
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
-        Image( 
-            painter = painterResource(id = R.drawable.mtn_icon), 
+        Image(
+            painter = painterResource(history.image),
             contentDescription ="",
             modifier = Modifier
                 .size(
@@ -115,22 +108,22 @@ fun MainCardInfo(){
                     )
                 )
         )
-
         Spacer(
             modifier = Modifier
                 .width(
-                dimensionResource(
-                    id = R.dimen.medium_spacer
-                )))
-
+                    dimensionResource(
+                        id = R.dimen.medium_spacer
+                    )
+                )
+        )
         Column(
             verticalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
                 .wrapContentHeight()
                 .weight(0.5f)
-            ) {
+        ) {
             Text(
-                text = stringResource(id = R.string.Customer1Name),
+                text = history.recipientname,
                 style = Typography.body1
             )
             Spacer(
@@ -141,14 +134,11 @@ fun MainCardInfo(){
                         )
                     ))
             Text(
-                text = "024 123 4567",
+                text = history.phonenumber,
                 style = Typography.body1.copy(color = secondaryTextColor),
             )
 
         }
-
-
-
         Column(
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.End,
@@ -163,7 +153,10 @@ fun MainCardInfo(){
                         RoundedCornerShape(dimensionResource(id = R.dimen.large_radius))
                     )
                     .background(
-                        color = successColor
+                        color = if (history.status == "Successful")
+                            successColor
+                        else
+                            failedColor
                     )
                     .padding(
                         vertical = dimensionResource(
@@ -176,9 +169,12 @@ fun MainCardInfo(){
             ){
                 Image(
                     painter = painterResource(
-                        id = R.drawable.check_icon
+                        id = if (history.status == "Successful")
+                            R.drawable.check_icon
+                            else
+                                R.drawable.cross_icon
                     ),
-                    contentDescription = "Successful",
+                    contentDescription = history.status,
                     modifier = Modifier
                         .size(
                             dimensionResource(id = R.dimen.status_icon_size)
@@ -194,31 +190,33 @@ fun MainCardInfo(){
                         )
                 )
                 Text(
-                    text = "Successful",
-                    style = Typography.caption.copy(color = successTextColor),
-
-                )
+                    text = history.status,
+                    style = Typography.caption.copy(color = if (history.status == "Successful")
+                        successTextColor
+                    else
+                        failedTextColor
+                    ),
+                    )
             }
             Spacer(
                 modifier = Modifier
                     .height(
                         dimensionResource(
-                        id = R.dimen.small_spacer
+                            id = R.dimen.small_spacer
                         )
-                    ))
+                    )
+            )
             Text(
-                text = "GHS 500",
+                text = history.amount,
                 style = Typography.h3
 
             )
-
-
         }
-        
     }
 }
 
 
+//Card Sub information composable containing User icon, Reason and Reference
 @Composable
 fun SubCardInfo(){
     Row(
@@ -277,8 +275,3 @@ fun SubCardInfo(){
 }
 
 
-//@Preview (showBackground = true)
-@Composable
-fun PreviewFunction(){
-    CardHistory()
-}

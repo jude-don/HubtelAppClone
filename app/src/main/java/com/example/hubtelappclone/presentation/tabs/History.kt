@@ -45,6 +45,8 @@ fun HistoryPage(){
                 )
                 .padding(it)
         ) {
+
+            //Navigation for the Segmented Control
             NavHost(navController = sub_navController, startDestination = HistorySubpage.route ){
                 composable(HistorySubpage.route)
                 {
