@@ -8,4 +8,4 @@
 
 Here's a walkthrough of implemented features:
 
-<img src='https://imgur.com/a/qg6LOsS' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://gifyu.com/image/S73X8' title='Video Walkthrough' width='' alt='Video Walkthrough' />
