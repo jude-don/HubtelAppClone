@@ -10,3 +10,7 @@ object HistorySubpage: SubRoute{
 object TransactionSummary: SubRoute{
     override val route = "TransactionSummary"
 }
+object HistoryDetails:SubRoute{
+    override val route = "HistoryDetails"
+    const val idarg = "myid"
+}

@@ -6,11 +6,14 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.hubtelappclone.R
 import com.example.hubtelappclone.navigation.*
+import com.example.hubtelappclone.presentation.history.HistoryDetailScreen
 import com.example.hubtelappclone.presentation.history.HistorySubpage
 import com.example.hubtelappclone.presentation.history.TopBar
 import com.example.hubtelappclone.presentation.history.TransactionSummary
@@ -50,11 +53,22 @@ fun HistoryPage(){
             NavHost(navController = sub_navController, startDestination = HistorySubpage.route ){
                 composable(HistorySubpage.route)
                 {
-                    HistorySubpage()
+                    HistorySubpage(){
+                        id ->  sub_navController.navigate(HistoryDetails.route + "/$id")
+                    }
                 }
                 composable(TransactionSummary.route)
                 {
                    TransactionSummary()
+                }
+                composable(
+                    route = HistoryDetails.route+"/{${HistoryDetails.idarg}}",
+                    arguments = listOf(navArgument(HistoryDetails.idarg){
+                        type = NavType.IntType
+                    })
+                ){
+                    val id = it.arguments?.getInt(HistoryDetails.idarg)
+                    HistoryDetailScreen()
                 }
             }
 

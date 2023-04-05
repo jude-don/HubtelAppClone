@@ -3,6 +3,7 @@ package com.example.hubtelappclone.presentation.history
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -20,13 +21,14 @@ import com.example.hubtelappclone.historymodel.HistoryData
 import com.example.hubtelappclone.ui.theme.*
 
 @Composable
-fun CardHistoryLazyColumn(history: HistoryData){
+fun CardHistoryLazyColumn(history: HistoryData,onItemClick:(id:Int)->Unit ){
 
     //Card layout
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight(),
+            .wrapContentHeight()
+            .clickable { onItemClick(history.id) },
         shape = RoundedCornerShape(
             dimensionResource(
                 id = R.dimen.medium_radius
@@ -60,7 +62,7 @@ fun CardHistoryLazyColumn(history: HistoryData){
                         )
                     )
             )
-            MainCardInfoLazyList(history)
+            MainCardInfo(history)
 
             Spacer(
                 modifier = Modifier
@@ -90,7 +92,7 @@ fun CardHistoryLazyColumn(history: HistoryData){
 
 // Card Information Composable containing Image, name, phonenumber, Status and Amount
 @Composable
-fun MainCardInfoLazyList(history:HistoryData) {
+private fun MainCardInfo(history:HistoryData) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -218,7 +220,7 @@ fun MainCardInfoLazyList(history:HistoryData) {
 
 //Card Sub information composable containing User icon, Reason and Reference
 @Composable
-fun SubCardInfo(){
+private fun SubCardInfo(){
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
