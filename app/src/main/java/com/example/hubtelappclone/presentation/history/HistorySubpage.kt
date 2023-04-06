@@ -14,9 +14,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,11 +23,9 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.hubtelappclone.R
 import com.example.hubtelappclone.historymodel.HistoryViewModel
-import com.example.hubtelappclone.historymodel.historyDataContainer
 import com.example.hubtelappclone.ui.theme.*
 
 
@@ -38,9 +33,7 @@ import com.example.hubtelappclone.ui.theme.*
 @Composable
 fun HistorySubpage( onItemClick:(id:Int)->Unit ){
     val viewModel:HistoryViewModel = viewModel()
-    val textState = remember {
-        mutableStateOf(TextFieldValue(""))
-    }
+   val textState = viewModel.searchInput
     val context = LocalContext.current
 
     //Main layout for the History Subpage
@@ -104,12 +97,12 @@ fun HistorySubpage( onItemClick:(id:Int)->Unit ){
 
 //Upper Section Composable which hold Searchbar and filtericon
 @Composable
-fun UpperSection(state: MutableState<TextFieldValue>, context: Context, onChanged:(input:String)->Unit){
+fun UpperSection(state: String, context: Context, onChanged:(String)->Unit){
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()) {
-        SearchBar(state = state) { input -> onChanged(input) }
+        SearchBar(state = state, onChanged = onChanged )
         Spacer(modifier = Modifier
             .width(
                 dimensionResource(
@@ -137,12 +130,12 @@ fun UpperSection(state: MutableState<TextFieldValue>, context: Context, onChange
 
 // SearchBar Composable
 @Composable
-fun SearchBar(state: MutableState<TextFieldValue>,onChanged: (input: String) -> Unit){
+fun SearchBar(state: String, onChanged: (String) -> Unit){
     val focusManager = LocalFocusManager.current
     OutlinedTextField(
-        value = state.value,
-        onValueChange = {
-            onChanged
+        value = state,
+        onValueChange ={
+            onChanged(it)
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             backgroundColor = secondaryColor,
